@@ -44,7 +44,9 @@ def video_swap(video_path, id_vetor, swap_model, detect_model, save_path, temp_r
     
     fps = video.get(cv2.CAP_PROP_FPS)
     if  os.path.exists(temp_results_dir):
-            shutil.rmtree(temp_results_dir)
+        shutil.rmtree(temp_results_dir)
+    else:
+        os.mkdir(temp_results_dir)
 
     spNorm =SpecificNorm()
     if use_mask:
@@ -65,8 +67,8 @@ def video_swap(video_path, id_vetor, swap_model, detect_model, save_path, temp_r
 
             if detect_results is not None:
                 # print(frame_index)
-                if not os.path.exists(temp_results_dir):
-                        os.mkdir(temp_results_dir)
+                
+                        
                 frame_align_crop_list = detect_results[0]
                 frame_mat_list = detect_results[1]
                 swap_result_list = []
